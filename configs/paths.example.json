@@ -1,0 +1,8 @@
+{
+  "python": "python",
+  "base_model": "/absolute/path/to/Qwen2.5-7B-Instruct",
+  "trajectories": "/absolute/path/to/train_unified_from_scratch_10x5_to_20x20_23800_v1.jsonl",
+  "checkpoint": "/absolute/path/to/best_gap_model_final_epoch_12",
+  "rollout_panel": "/absolute/path/to/fixed_5_per_scale_from_dataset_seed62.jsonl",
+  "gpu": "0"
+}

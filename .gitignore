@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+configs/server.local.json
+configs/paths.json
+checkpoints/
+runs/
+test-results/
+artifacts/
+data/smoke_trajectories.jsonl
+data/smoke_trajectories.manifest.json
+results/
+*.pt
+*.bin
+*.safetensors
+*.log

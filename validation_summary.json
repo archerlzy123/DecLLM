@@ -1,0 +1,26 @@
+{
+  "all_passed": true,
+  "cpu_tests": 10,
+  "cpu_skipped": [],
+  "full_and_smoke_training_and_inference_argument_parity": {
+    "full": true,
+    "smoke": true,
+    "inference_command": true
+  },
+  "core_byte_identical": {
+    "dt_train.py": true,
+    "dt_infer.py": true,
+    "decision_transformer.py": true,
+    "dt_data_processing.py": true,
+    "state_tensorization.py": true,
+    "ssnc_mask.py": true,
+    "ssnc_inference_routing.py": true,
+    "Envs/JSSPEnv/JSSPEnv.py": true
+  },
+  "formal_checkpoint_load_and_complete_rollout": true,
+  "formal_checkpoint_rollout_equal_to_stage1": true,
+  "makespan": 43.0,
+  "job_actions": 50,
+  "clock_advance_records": 7,
+  "no_actual_training_used_the_dry_run_panel": true
+}
