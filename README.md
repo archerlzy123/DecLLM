@@ -1,5 +1,15 @@
 # DecLLM
 
+> **DecLLM: Graph-Enhanced Decision-Making Large Language Model with Conflict-Aware Mask for Multi-Configuration Job Shop Scheduling Problems**
+>
+> by [Rongkai Wang](https://scholar.google.com.hk/citations?hl=zh-CN&user=l-zF-W0AAAAJ)<sup>1</sup>, Ziyi Lu<sup>1</sup>, Litao Zhang<sup>1</sup>, Yulong Zhang<sup>1</sup>, Zhezhuang Xu<sup>1</sup>, and [Shibo He](https://scholar.google.com/citations?hl=zh-CN&user=5GOcb4gAAAAJ&view_op=list_works&sortby=pubdate)<sup>2,*</sup>
+>
+> <sup>1</sup> School of Electrical Engineering and Automation, Fuzhou University, Fuzhou 350108, China.
+>
+> <sup>2</sup> State Key Laboratory of Industrial Control Technology, Zhejiang University, Hangzhou 310027, China.
+>
+> <sup>*</sup> Corresponding author: Shibo He.
+
 DecLLM is a shared Decision Transformer scheduling policy for the job-shop scheduling problem (JSSP). This repository contains the cleaned SSNC-v1 implementation and instructions for using its best trained checkpoint.
 
 The policy uses graph-based state encoding, a Qwen2.5-7B-Instruct backbone with LoRA, candidate-job scoring, configuration embeddings, bottleneck-based adaptation modules, and configuration-specific conflict-aware masks. The released model uses `canonical_v2` state tensorization and `normalized_budget` conditioning.
