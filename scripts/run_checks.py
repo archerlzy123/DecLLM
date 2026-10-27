@@ -26,17 +26,17 @@ tests=[
  ('syntax',[sys.executable,'-c',"from pathlib import Path; fs=list(Path('.').rglob('*.py')); [compile(p.read_text(encoding='utf-8-sig'),str(p),'exec') for p in fs]; print('SYNTAX_OK',len(fs))"]),
  ('train_help',[sys.executable,'dt_train.py','--help']),
  ('infer_help',[sys.executable,'dt_infer.py','--help']),
- ('ssnc_masks',[sys.executable,'test_ssnc_mask.py']),
- ('state_tensorization',[sys.executable,'test_state_tensorization_canonical_v2.py']),
- ('top_p',[sys.executable,'test_top_p_sampling_live.py']),
- ('routing',[sys.executable,'test_ssnc_inference_routing.py']),
- ('entrypoint_parity',[sys.executable,'verify_canonical_v2_entrypoints.py']),
- ('mock_smoke',[sys.executable,'test_smoke.py']),
+ ('ssnc_masks',[sys.executable,'-m','tests.test_ssnc_mask']),
+ ('state_tensorization',[sys.executable,'-m','tests.test_state_tensorization_canonical_v2']),
+ ('top_p',[sys.executable,'-m','tests.test_top_p_sampling_live']),
+ ('routing',[sys.executable,'-m','tests.test_ssnc_inference_routing']),
+ ('entrypoint_parity',[sys.executable,'-m','tests.verify_canonical_v2_entrypoints']),
+ ('mock_smoke',[sys.executable,'-m','tests.test_smoke']),
 ]
 if args.checkpoint:
  checkpoint=Path(args.checkpoint).resolve()/'dt_custom_modules.pt'
  assert checkpoint.is_file(),checkpoint
- tests.append(('neighbor_routing',[sys.executable,'verify_ssnc_unseen_neighbor_routing.py',
+ tests.append(('neighbor_routing',[sys.executable,'-m','tests.verify_ssnc_unseen_neighbor_routing',
   '--custom_modules',str(checkpoint),'--output_json',str(LOGS/'neighbor_routing.json')]))
 else:
  skipped.append({'name':'neighbor_routing','reason':'Supply --checkpoint PATH to test saved mask routing'})

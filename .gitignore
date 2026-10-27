@@ -4,7 +4,7 @@ __pycache__/
 .pytest_cache/
 configs/server.local.json
 configs/paths.json
-checkpoints/
+/checkpoints/
 runs/
 test-results/
 artifacts/

@@ -1,5 +1,20 @@
 # Validation scope
 
+## Repository organization (2026-10-27)
+
+Four obsolete fixed-path step2700/phase1 analysis scripts were removed. Seven checks were moved into `tests/`, and thirteen optional helpers were grouped under `tools/`. The check runner and two shared imports were updated for module execution. The historical collection example's usage/path bootstrap and the drawing helper's output path were adjusted for the new locations. README files document the supported commands and the historical scope of optional helpers. The pre-cleanup source was retained separately, and removed scripts remain available in Git history before this cleanup.
+
+The nine core/model/environment/augmentation files, launcher and SSNC-v1 training configuration are byte-identical to pre-cleanup commit `6c511cdc68bcc2ed546befd383169b1b526a1ded`. Sixteen of the twenty moved files are also byte-identical; the other four contain only the import, usage/bootstrap or output-path changes described above.
+
+Verified in the existing Linux server environment:
+
+- All ten existing CPU checks passed, including the saved-checkpoint routing check; none were skipped.
+- All twelve CLI-equipped optional helpers completed `--help`, and the auxiliary figure module imported successfully.
+- Full-training, two-update smoke-training and inference launcher arguments matched the previous public package, after normalizing entrypoint/output locations.
+- The original best SSNC-v1 checkpoint completed the generated 10x5 Greedy instance with 50 job-selection actions, seven clock-advance records and makespan 43. Its complete action sequence and makespan matched the previous public-package validation.
+
+See `validation_layout_summary.json`. This organization check did not perform new optimizer updates, full retraining or complete benchmark reproduction. The makespan above is a functional regression result, not a benchmark average. Previous training-regression evidence below refers to the earlier cleanup.
+
 ## Cleanup regression
 
 The second-stage cleanup removed the unused root-level `utils.py` and `rewards.py` inherited from a multi-problem text-scoring workflow. The only production edit was deletion of two unused wildcard imports in `dt_train.py`. JSSP environment rewards, makespan computation, graph encoding, data processing, masking and inference were retained.

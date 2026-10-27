@@ -14,7 +14,7 @@ from pathlib import Path
 
 import numpy as np
 
-from generate_random_generalization_instances import (
+from tools.data.generate_random_generalization_instances import (
     DIFFICULTY,
     generate_instance,
     instance_hash,

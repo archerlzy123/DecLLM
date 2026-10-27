@@ -11,7 +11,7 @@ from typing import Iterable
 from PIL import Image, ImageDraw, ImageFont
 
 
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "figures")
+OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "figures")
 PNG_PATH = os.path.join(OUT_DIR, "jssp_decision_transformer_architecture.png")
 SVG_PATH = os.path.join(OUT_DIR, "jssp_decision_transformer_architecture.svg")
 

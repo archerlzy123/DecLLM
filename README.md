@@ -14,9 +14,26 @@ DecLLM is a shared Decision Transformer scheduling policy for the job-shop sched
 
 The policy uses graph-based state encoding, a Qwen2.5-7B-Instruct backbone with LoRA, candidate-job scoring, configuration embeddings, bottleneck-based adaptation modules, and configuration-specific conflict-aware masks. The released model uses `canonical_v2` state tensorization and `normalized_budget` conditioning.
 
+## Repository layout
+
+```text
+dt_train.py / dt_infer.py       Training and inference entrypoints
+decision_transformer.py        Model and scheduling heads
+dt_data_processing.py          JSSP trajectory processing
+state_tensorization.py         Shared state tensorization
+ssnc_mask.py                   Conflict-aware mask updates
+ssnc_inference_routing.py      Mask routing at inference
+dataset_optimization.py        Optional augmentation dependency
+Envs/JSSPEnv/                  JSSP environment and solver
+configs/                       Launcher configuration templates
+scripts/                       Training/inference launcher and check runner
+tests/                         Regression and smoke checks
+tools/                         Optional data, evaluation and analysis tools
+```
+
 ## Checkpoint
 
-Download **DecLLM-ssnc-v1-best.zip** from the [SSNC-v1 release](https://github.com/archerlqq123/DecLLM/releases/tag/ssnc-v1), verify it against the accompanying `SHA256SUMS.txt`, and extract it under `checkpoints/`:
+Download **DecLLM-ssnc-v1-best.zip** from the [SSNC-v1 release](https://github.com/archerlzy123/DecLLM/releases/tag/ssnc-v1), verify it against the accompanying `SHA256SUMS.txt`, and extract it under `checkpoints/`:
 
 ```text
 checkpoints/ssnc-v1-best/
@@ -69,7 +86,7 @@ python scripts/launch.py infer --gpu 0 --name bon8_10x5 --jobs 10 --machines 5 -
 
 The first command runs Greedy; the second uses eight top-p=0.7 samples. Each example evaluates one generated instance, not an entire paper benchmark. Outputs are written under `runs/NAME/`; existing output directories are never overwritten. The launcher uses the formal inference entrypoint with the five mask sites enabled and `all_one` routing for unseen configurations.
 
-Run `python dt_infer.py --help` for the full evaluation interface. Auxiliary analysis, generation, evaluation and ablation helpers remain in the tree, but they are not all required by the default SSNC-v1 workflow. Helpers containing `/path/to/local_workspace` defaults require explicit local arguments.
+Run `python dt_infer.py --help` for the full evaluation interface. Optional data, evaluation, analysis and checkpoint helpers are grouped under `tools/`; see [tools/README.md](tools/README.md) for their scope and module commands. Helpers containing `/path/to/local_workspace` defaults require explicit local arguments.
 
 ## Training
 
@@ -96,6 +113,8 @@ python scripts/run_checks.py --checkpoint checkpoints/ssnc-v1-best --output test
 ```
 
 Without a checkpoint, nine CPU checks run and the checkpoint-dependent neighbor-routing check is explicitly skipped. With a checkpoint, all ten run. Output directories must not already exist.
+
+Tests live under `tests/`. Run an individual check from the repository root, for example `python -m tests.test_ssnc_mask` or `python -m tests.verify_canonical_v2_entrypoints`. Use the full runner above to include all script-based checks.
 
 The cleanup regression compared the actual before/after code on the same server, GPU, seed and 88 trajectories, with two real 7B optimizer updates per side. All 24 observed loss calls, observed gradients and optimizer parameter updates matched bitwise. The 672 saved checkpoint tensors matched elementwise, and reloaded 10x5 Greedy trajectories matched. This regression used newly trained smoke checkpoints; the released asset is the separate original best checkpoint. See [VALIDATION.md](VALIDATION.md).
 

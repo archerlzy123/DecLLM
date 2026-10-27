@@ -2,17 +2,13 @@
 一键收集多尺度轨迹数据
 
 使用方法：
-    python collect_multi_scale.py --total 10000 --output_dir ./data
+    python -m tools.data.collect_multi_scale --total 10000 --output_dir ./data
 """
 
 import argparse
 import json
 import os
 import sys
-
-# 添加当前目录到路径
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 
 def collect_multi_scale_trajectories(total_trajectories: int, 
                                       output_dir: str,

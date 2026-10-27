@@ -6,7 +6,7 @@ from dt_data_processing import JSSPDecisionTransformerDataset
 from dt_infer import _obs_to_state_dict
 from dt_train import process_state_for_batch
 from state_tensorization import CANONICAL_V2, GRAPH_STATE_KEYS, tensorize_graph_state
-from test_state_tensorization_canonical_v2 import MAX_JOBS, MAX_MACHINES, SCALES, make_state
+from tests.test_state_tensorization_canonical_v2 import MAX_JOBS, MAX_MACHINES, SCALES, make_state
 
 
 for n_jobs, n_machines in SCALES:

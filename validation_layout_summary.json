@@ -1,0 +1,33 @@
+{
+  "all_passed": true,
+  "baseline_commit": "6c511cdc68bcc2ed546befd383169b1b526a1ded",
+  "core_launcher_and_config_byte_identical": {
+    "dt_train.py": true,
+    "dt_infer.py": true,
+    "decision_transformer.py": true,
+    "dt_data_processing.py": true,
+    "state_tensorization.py": true,
+    "ssnc_mask.py": true,
+    "ssnc_inference_routing.py": true,
+    "dataset_optimization.py": true,
+    "Envs/JSSPEnv/JSSPEnv.py": true,
+    "scripts/launch.py": true,
+    "configs/training_ssnc_v1.json": true
+  },
+  "cpu_checks_passed": 10,
+  "cpu_checks_skipped": [],
+  "tool_help_checks_passed": 12,
+  "figure_module_import_passed": true,
+  "launcher_argument_parity": {
+    "full_training": true,
+    "smoke_training": true,
+    "inference": true
+  },
+  "formal_checkpoint_inference_passed": true,
+  "inference_actions_equal_to_previous_public_package": true,
+  "inference_makespan_equal_to_previous_public_package": true,
+  "job_selection_actions": 50,
+  "clock_advance_records": 7,
+  "makespan": 43,
+  "new_training_performed": false
+}
